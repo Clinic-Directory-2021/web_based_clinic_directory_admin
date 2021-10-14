@@ -1,0 +1,147 @@
+*{
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+}
+.header{
+    width: 100%;
+    height: 70px;
+    background-color: #B85C38;
+    display: flex;
+}
+.header h2{
+   padding: 10px;
+   color: #E0C097;
+   cursor: pointer;
+}
+.topnav{
+    width: 60%;
+}
+.action{
+    float: right;
+    width: 40%;
+}
+.action li{
+
+    float: right;
+    list-style-type: none;
+    padding: 10px;
+    margin:10px;
+    text-align: center;
+    color:#E0C097;;
+}
+.header .topnav ul li{
+    float: left;
+    padding: 10px;
+    color: #E0C097;;
+    list-style-type: none;
+    font-size: 20px;
+    margin: 10px;
+    width: 100px;
+    text-align: center;
+}
+.header .menu{
+    float: right;
+    width: 10%;
+    height: 100%;
+    display: block;
+    margin: 15px;
+}
+.header .menu .line {
+    width: 35px;
+    height: 5px;
+    background-color: #E0C097;
+    margin: 6px 0;
+  }
+  
+@media (min-width:320px)  { /* smartphones, iPhone, portrait 480x320 phones */ 
+  .header .topnav{
+      display: none;
+  }
+  .header .action{
+    display: none;
+}
+.menu-list{
+    padding: 20px;
+    display: none;
+    position: absolute;
+    top: 0%;
+    right: 0%;
+    width: 100%;
+    height: 100vh;
+    opacity: 0.9;
+    background-color: black;
+    z-index: 1;
+}
+.menu-list .menu-header{
+    width: 100%;
+    height: 5vh;
+    display: flex;
+}
+.menu-header .close{
+    width: 10%;
+    height: 100%;
+}
+.menu-header .decoy{
+    width: 90%;
+    height: 100%;
+}
+.menu-list .close .left{
+  transform: rotate(45deg);
+  position: relative;
+  top: 16%;
+  left: 2%;
+  width: 20px;
+  height: 5px;
+  background-color: #E0C097;
+}
+.menu-list .close .right{
+  transform: rotate(-45deg);
+  position: relative;
+  top: 2%;
+  left: 2%;
+  width: 20px;
+  height: 5px;
+  background-color: #E0C097;
+}
+.menu-list ul{
+    list-style-type: none;
+}
+.menu-list ul a{
+    text-decoration: none;
+    color: #E0C097;
+}
+.menu-list ul a li h3{
+    padding: 10px;
+    text-align: center;
+    color: white;
+}
+.middle{
+  display: none;
+}
+}
+@media (min-width:481px)  { /* portrait e-readers (Nook/Kindle), smaller tablets @ 600 or @ 640 wide. */ 
+
+}
+@media (min-width:641px)  { /* portrait tablets, portrait iPad, landscape e-readers, landscape 800x480 or 854x480 phones */ 
+    .header .topnav{
+        display: block;
+    }
+    .header .menu{
+        display: none;
+    }
+}
+@media (min-width:961px)  { /* tablet, landscape iPad, lo-res laptops ands desktops */ 
+    .topnav{
+        width: 70%;
+    }
+    .action{
+        float: right;
+        width: 30%;
+    }
+}
+@media (min-width:1025px) { /* big landscape tablets, laptops, and desktops */ 
+
+}
+@media (min-width:1281px) { /* hi-res laptops and desktops */ 
+
+}
