@@ -1,0 +1,126 @@
+/* Create two equal columns that floats next to each other */
+.clinic-content .left{
+    height: 100vh;
+}
+.clinic-content .right{
+    height: 100vh;
+}
+.available-items:hover{
+    background-color: #5C3D2E;
+    color: white;
+}
+@media (min-width:320px)  { /* smartphones, iPhone, portrait 480x320 phones */ 
+    .clinic-content{
+        display: block;
+        width: 100%;
+    }
+    .clinic-content .left{
+        height: 20vh;
+        width: 100%;
+    }
+    .clinic-content .right{
+        width: 100%;
+        height: 80vh;
+    }
+
+    .clinic-div{
+        background-color: #E0C097;
+        width: 100%;
+        overflow-y: auto;
+    }
+    .clinic-div h6{
+        color: #2D2424;
+        box-shadow: 0 0 50px #5C3D2E;
+    }
+    .clinic-div .clinic-item{
+        display: flex;
+        height: 100px;
+        text-align: center;
+        cursor: pointer;
+    }
+    .clinic-div .clinic-item img{
+        width: 70px;
+        height: 70px;
+        margin:10px 10px 10px 20px;
+        border-radius: 50%;
+        border: 1px solid #5C3D2E;
+    }
+    .clinic-div .clinic-item p{
+        font-size: 14px;
+        width: 80%;
+    }
+    .clinic-div .clinic-item .clinic-action{
+        margin-top: 10px;
+        width: 30%;
+    }
+    .clinic-div .clinic-item .clinic-action button{
+        width: 90%;
+        margin-bottom: 5px;
+    }
+    div.clinic-div>div:nth-of-type(odd) {
+        background: #e0e0e0;
+      }
+      .clinic-content .right .info-header{
+          width: 100%;
+          height: 350px;
+          background-color:gainsboro;
+          display: flex;
+      }
+      .clinic-content .right .info-header .image{
+          width: 200px;
+          height: 200px;
+          border-radius: 50%;
+          margin: 20px;
+          border: 5px  double #5C3D2E;
+      }
+      .clinic-content .right .info-header .info-text{
+          margin-top: 50px
+      }
+      .available-items{
+          width: 220px;
+          height: 220px;
+          margin: 5px;
+          border:1px solid #5C3D2E;
+          float: left;
+          cursor: pointer;
+      }
+
+      .available-items img{
+          width: 60%;
+          height: 60%;
+          margin-left: 20%;
+      }
+}
+@media (min-width:481px)  { /* portrait e-readers (Nook/Kindle), smaller tablets @ 600 or @ 640 wide. */ 
+
+}
+@media (min-width:641px)  { /* portrait tablets, portrait iPad, landscape e-readers, landscape 800x480 or 854x480 phones */ 
+    
+}
+@media (min-width:961px)  { /* tablet, landscape iPad, lo-res laptops ands desktops */ 
+    .clinic-content{
+        display: flex;
+        width: 100%;
+    }
+    .clinic-content .left{
+        width: 20%;
+        height: 100vh;
+    }
+    .clinic-content .right{
+        width: 80%;
+        height: 100vh;
+    }
+}
+@media (min-width:1025px) { /* big landscape tablets, laptops, and desktops */ 
+    .news{
+        width: 60%;
+        height: 500px;
+    }
+    
+}
+@media (min-width:1281px) { /* hi-res laptops and desktops */ 
+    .request-div .request-item .request-action button{
+        width: 50%;
+        margin-bottom: 5px;
+    }
+}
