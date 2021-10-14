@@ -1,12 +1,36 @@
 *{
     font-family: Arial, Helvetica, sans-serif;
     margin: 0;
+    overflow-x: hidden;
 }
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: none; 
+    border-radius: 10px;
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #888; 
+    border-radius: 10px;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+    border-radius: 10px;
+  }
 .header{
     width: 100%;
     height: 70px;
     background-color: #B85C38;
     display: flex;
+    overflow-y: hidden;
 }
 .header h2{
    padding: 10px;
@@ -15,6 +39,7 @@
 }
 .topnav{
     width: 60%;
+    overflow: hidden;
 }
 .action{
     float: right;
@@ -123,14 +148,18 @@
 
 }
 @media (min-width:641px)  { /* portrait tablets, portrait iPad, landscape e-readers, landscape 800x480 or 854x480 phones */ 
+    
+}
+@media (min-width:961px)  { /* tablet, landscape iPad, lo-res laptops ands desktops */ 
     .header .topnav{
         display: block;
     }
     .header .menu{
         display: none;
     }
-}
-@media (min-width:961px)  { /* tablet, landscape iPad, lo-res laptops ands desktops */ 
+    .header .action{
+        display: block;
+    }
     .topnav{
         width: 70%;
     }

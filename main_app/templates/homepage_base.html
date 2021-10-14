@@ -6,6 +6,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'css/homepage_base.css' %}">
+    <link rel="stylesheet" href="{% static 'css/homepage.css' %}">
+    <link rel="stylesheet" href="{% static 'css/request.css' %}">
+    <link rel="stylesheet" href="{% static 'css/clinic.css' %}">
+    <link rel="stylesheet" href="{% static 'css/settings.css' %}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-uWxY/CJNBR+1zjPWmfnSnVxwRheevXITnMqoEIeG1LJrdI0GlVs/9cVSyPYXdcSF" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-kQtW33rZJAHjgefvhyyzcGF3C5TFyBQBA13V1RKPf4uH+bwyzQxZ6CmMZHmNBEfJ" crossorigin="anonymous"></script>
     <script src="{% static 'js/homepage_base.js' %}" defer></script>
@@ -17,8 +21,9 @@
         <img src="../static/images/logo.png" alt="" width="50" height="50">
         <div class="topnav">
             <ul>
-                <a href="#"><li>Request</li></a>
-                <a href="#"><li>Clinic</li></a>
+                <a href="{% url 'homepage' %}"><li>Home</li></a>
+                <a href="{% url 'request' %}"><li>Request</li></a>
+                <a href="{% url 'clinic' %}"><li>Clinic</li></a>
             </ul>
         </div>
         <div class="menu" onclick="show_menu()">
@@ -28,7 +33,7 @@
         </div>
         <div class="action">
             <a href="#"><li>Logout</li></a>
-            <a href="#"><li>Settings</li></a>
+            <a href="{% url 'settings' %}"><li>Settings</li></a>
         </div>
     </div>
     <div class="menu-list">
@@ -40,9 +45,10 @@
             </div>
         </div>
         <ul>
-            <a href="#"><li><h3>Request</h3></li></a>
-            <a href="#"><li><h3>Clinic</h3></li></a>
-            <a href="#"><li><h3>About</h3></li></a>
+            <a href="{% url 'homepage' %}"><li><h3>Home</h3></li></a>
+            <a href="{% url 'request' %}"><li><h3>Request</h3></li></a>
+            <a href="{% url 'clinic' %}"><li><h3>Clinic</h3></li></a>
+            <a href="{% url 'settings' %}"><li><h3>Settings</h3></li></a>
             <a href="#"><li><h3>Logout</h3></li></a>
         </ul>
     </div>
