@@ -69,6 +69,7 @@ function clinicDecline(user_id,clinic_img_directory, clinic_email ){
                     },
                 success: function(data){
                     $('#loader').hide();
+                    
                     location.reload();
                 }, 
                 error: function(data){

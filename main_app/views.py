@@ -37,13 +37,13 @@ storage = firebase.storage()
 
 # Create your views here.
 def login(request):
-    if 'user_id' not in request.session:
+    if 'clinic_id' not in request.session:
         return render(request,'login.html')
     else:
         return redirect('/homepage')
 
 def homepage(request):
-    if 'user_id' in request.session:
+    if 'clinic_id' in request.session:
         all_news = firestoreDB.collection('news').get()
 
         news = []
@@ -61,7 +61,7 @@ def homepage(request):
     #return render(request,'homepage.html')
 
 def request(request):
-    if 'user_id' in request.session:
+    if 'clinic_id' in request.session:
         clinic_requests = firestoreDB.collection('queue').get()
 
         queue = []
@@ -73,13 +73,13 @@ def request(request):
         data ={
             'request_queue': queue,
         }
-
+    
         return render(request,'request.html', data)
     else:
         return redirect('login')
 
 def clinic(request):
-    if 'user_id' in request.session:
+    if 'clinic_id' in request.session:
         users = firestoreDB.collection('users').get()
 
         user_data = []
@@ -120,7 +120,7 @@ def login_validation(request):
         
 
         if user_signin['localId'] == 'DhLUuRJ7BOOkx9jF78JzvVSxTLb2':
-            request.session['user_id'] = user_signin['localId']
+            request.session['clinic_id'] = user_signin['localId']
             return HttpResponse('Success!')
         else:
             return HttpResponse('Invalid Email or Password!')
@@ -130,7 +130,7 @@ def login_validation(request):
 
 def logout(request):
     try:
-        del request.session['user_id']
+        del request.session['clinic_id']
     except:
         return redirect('/')
     return redirect('/')
@@ -171,14 +171,12 @@ def acceptClinic(request):
 
         firestoreDB.collection('queue').document(userId).delete()
 
-
-        timeNow = datetime.datetime.now().time()
-        date_time = timeNow.strftime("%A, %d. %B %Y %I:%M%p")
+        now = datetime.datetime.now()
 
         doc_ref2 = firestoreDB.collection('news').document(userId)
 
         doc_ref2.set({
-            'date_accepted': date_time,
+            'date_accepted': now,
             'clinic_name': clinicName,
         })
 
@@ -192,7 +190,7 @@ def acceptClinic(request):
             fail_silently=False,
         )
 
-        return HttpResponse('Accepted')
+        return redirect('request')
 
 def declineClinic(request):
     if request.method == 'POST':
@@ -216,5 +214,5 @@ def declineClinic(request):
             fail_silently=False,
         )
 
-        return HttpResponse('Declined')
+        return redirect('request')
 
