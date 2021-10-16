@@ -10,6 +10,41 @@
        <button class="btn btn-danger">Decline</button>
    </div>
 </div> -->
+{% if request_queue %}
+
+{% for clinic_queue in request_queue %}
+
+<div class="request-item">
+    <form>
+    {% csrf_token %}
+    </form>
+    <p><strong>{{clinic_queue.email}}</strong> with a name of <strong>{{clinic_queue.clinic_name}}</strong> has request for your directory.</p>
+    <div class="request-action">
+        <button class="btn btn-success" onclick="clinicAccept(
+        '{{clinic_queue.clinic_address}}'
+        ,'{{clinic_queue.clinic_contact_number}}'
+        ,'{{clinic_queue.clinic_description}}'
+        ,'{{clinic_queue.clinic_img_directory}}'
+        ,'{{clinic_queue.clinic_img_url}}'
+        ,'{{clinic_queue.clinic_name}}'
+        ,'{{clinic_queue.opening_time}}'
+        ,'{{clinic_queue.closing_time}}'
+        ,'{{clinic_queue.email}}'
+        ,'{{clinic_queue.latitude}}'
+        ,'{{clinic_queue.longitude}}'
+        ,'{{clinic_queue.total_items}}'
+        ,'{{clinic_queue.user_id}}'
+        )">Accept</button>
+        <button class="btn btn-danger" onclick="clinicDecline('{{clinic_queue.user_id}}','{{clinic_queue.clinic_img_directory}}')">Decline</button>
+    </div>
+ </div>
+
+ {% endfor %}
+{% else %}
 <h6 align="center"><em>No Request available.</em></h6>
+
+{% endif %}
+
+<div id="loader"></div>
 </div>
 {% endblock content %}

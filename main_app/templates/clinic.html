@@ -4,6 +4,11 @@
 <div class="clinic-content">
     <div class="left"><div class="clinic-div">
         <h6 align="center">Clinic List</h6>
+
+        {% if user_data %}
+
+        {% csrf_token %}
+        {% for values in user_data %}
         <!--Uncomment this to see the design of Request item-->
          <!-- <div class="clinic-item"> 
            <img src="../static/images/rate.png" alt="" style="width: 20%;">
@@ -14,14 +19,43 @@
             <text style="font-size: 12px;">Animal Vet CLinic Sample Address</text>
            </div>
         </div>  -->
+
+        <div class="clinic-item" onclick="showClinicInfo(
+        '{{values.clinic_address}}'
+        ,'{{values.clinic_contact_number}}'
+        ,'{{values.clinic_description}}'
+        ,'{{values.clinic_img_directory}}'
+        ,'{{values.clinic_img_url}}'
+        ,'{{values.clinic_name}}'
+        ,'{{values.opening_time}}'
+        ,'{{values.closing_time}}'
+        ,'{{values.email}}'
+        ,'{{values.latitude}}'
+        ,'{{values.longitude}}'
+        ,'{{values.total_items}}'
+        ,'{{values.user_id}}'
+        )" > 
+            <img src="{{values.clinic_img_url}}" alt="" style="width: 20%;">
+            <br>
+            <div style='width: 80%;'>
+             <br>
+             <strong>{{values.clinic_name}}</strong>
+             <text style="font-size: 12px;">{{values.clinic_address}}</text>
+            </div>
+         </div> 
+        {% endfor %}
+
+        {% else %}
         <p align="center"><em>No Clinic is stored in directory.</em></p>
+
+        {% endif %}
         </div></div>
     <div class="right">
         <div class="info-header">
-            <img src="../static/images/logo.png" alt="" class="image">
+            <img id="showClinicImg" src="../static/images/logo.png" alt="" class="image">
             <div class="info-text">
-                <h3>Animal Vet CLinic Sample Name</h3>
-                <h5>Animal Vet CLinic Sample Address</h3>
+                <h3 id="showClinicName">Animal Vet CLinic Sample Name</h3>
+                <h5 id="showClinicAddress">Animal Vet CLinic Sample Address</h3>
                     <br>
                 <img src="../static/images/rate.png" alt="rate" width="24" height="24">
                 <img src="../static/images/rate.png" alt="rate" width="24" height="24">
@@ -29,19 +63,16 @@
                 <img src="../static/images/rate.png" alt="rate" width="24" height="24">
                 <img src="../static/images/rate.png" alt="rate" width="24" height="24">
                 <p><strong>5.0</strong></p>
-                <p>Opning and Closing Time</p>
-                <p><strong>Contact number</strong></p>
-                <p><em>Description sample here</em></p>
+                <p id="showClinicTime">Opning and Closing Time</p>
+                <p id="showClinicNumber"><strong>Contact number</strong></p>
+                <p id="showClinicDescription"><em>Description sample here</em></p>
             </div>
             
         </div>
+        <h5 style="margin:10px"><em>Available items</em></h5>
         <div class="info-body">
-            <h5 style="margin:10px"><em>Available items</em></h5>
-            <div class="available-items">
-                <img src="../static/images/logo.png">
-                <p align="center"><strong>Item name</strong></p>
-                <p align="center">Availability</p>
-            </div>
+            <div id="loading"></div>
+            
         </div>
     </div>
 </div>

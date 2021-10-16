@@ -12,6 +12,15 @@
 <br>
 <br>
 <br>
-<h6 align='center'><em>No Activity occurs this time </em> </h5>
+{% if news %}
+    {% for current_news in news %}
+        {{current_news.date_accepted}} <br>
+        {{current_news.clinic_name}}
+    {% endfor %}
+{% else %}
+    <h6 align='center'><em>No Activity occurs this time </em> </h5>
+
+{% endif %}
+
 </div>
 {% endblock content %}
