@@ -57,7 +57,7 @@ def homepage(request):
         }
         return render(request,'homepage.html', data)
     else:
-        return redirect('')
+        return redirect('login')
     #return render(request,'homepage.html')
 
 def request(request):
@@ -76,7 +76,7 @@ def request(request):
 
         return render(request,'request.html', data)
     else:
-        return redirect('')
+        return redirect('login')
 
 def clinic(request):
     if 'user_id' in request.session:
@@ -105,7 +105,7 @@ def clinic(request):
         return render(request,'clinic.html', data)  
 
     else:
-        return redirect('')
+        return redirect('login')
 
 def settings(request):
     return render(request,'settings.html')
@@ -182,7 +182,7 @@ def acceptClinic(request):
             'clinic_name': clinicName,
         })
 
-        email_message = 'Congratulations Your Application for Animal Clinic Directory has now been approved, You can now Sign In with Your Email and Password Provided on the Registration Page that You have Already Filled Up Before' ;
+        email_message = 'Congratulations Your Request for your Clinic to be Added in Animal Clinic Directory has now been approved, You can now Sign In with Your Email and Password Provided on the Registration Page that You have Already Filled Up Before' ;
 
         send_mail(
             'Animal Clinic Directory',
@@ -198,11 +198,23 @@ def declineClinic(request):
     if request.method == 'POST':
         userId = request.POST.get('userId')
         clinicImgDirectory = request.POST.get('clinicImgDirectory')
+        clinicEmail = request.POST.get('clinicEmail')
 
         storage.delete(clinicImgDirectory, userId)
 
         auth.delete_user_account(userId)
 
         firestoreDB.collection('queue').document(userId).delete()
+        
+        email_message = 'We Appreciate Your Effort But Your Request to add Your Clinic in Animal Clinic Directory Have Been Declined.' ;
+
+        send_mail(
+            'Animal Clinic Directory',
+            email_message,
+            'clinic.directory.2021@gmail.com',
+            [clinicEmail],
+            fail_silently=False,
+        )
+
         return HttpResponse('Declined')
 
