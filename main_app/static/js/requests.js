@@ -68,9 +68,8 @@ function clinicDecline(user_id,clinic_img_directory, clinic_email ){
                     csrfmiddlewaretoken: $("input[name='csrfmiddlewaretoken']").val(),
                     },
                 success: function(data){
-                    $('#loader').hide();
-                    
                     location.reload();
+                    $('#loader').hide();
                 }, 
                 error: function(data){
                     $('#loader').hide();
