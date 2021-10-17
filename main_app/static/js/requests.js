@@ -47,7 +47,7 @@ function clinicAccept(clinic_address, clinic_contact_number, clinic_description,
       })
 }
 
-function clinicDecline(user_id,clinic_img_directory, clinic_email ){
+function clinicDecline(user_id,clinic_img_directory, clinic_email , clinic_name){
     Swal.fire({
         title: 'Do you really want to Decline this Clinic?',
         icon: 'question',
@@ -65,6 +65,7 @@ function clinicDecline(user_id,clinic_img_directory, clinic_email ){
                     userId: user_id,
                     clinicImgDirectory: clinic_img_directory,
                     clinicEmail: clinic_email,
+                    clinicName: clinic_name,
                     csrfmiddlewaretoken: $("input[name='csrfmiddlewaretoken']").val(),
                     },
                 success: function(data){

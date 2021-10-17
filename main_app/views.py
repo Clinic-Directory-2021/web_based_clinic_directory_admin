@@ -197,6 +197,7 @@ def declineClinic(request):
         userId = request.POST.get('userId')
         clinicImgDirectory = request.POST.get('clinicImgDirectory')
         clinicEmail = request.POST.get('clinicEmail')
+        clinicName = request.POST.get('clinicName')
 
         storage.delete(clinicImgDirectory, userId)
 
@@ -213,6 +214,16 @@ def declineClinic(request):
             [clinicEmail],
             fail_silently=False,
         )
+
+
+        now = datetime.datetime.now()
+
+        doc_ref2 = firestoreDB.collection('news').document(userId)
+
+        doc_ref2.set({
+            'date_rejected': now,
+            'clinic_name': clinicName,
+        })
 
         return redirect('request')
 

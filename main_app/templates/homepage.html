@@ -14,8 +14,12 @@
 <br>
 {% if news %}
     {% for current_news in news %}
+        <!-- date when clinic is accepted -->
         {{current_news.date_accepted}} <br>
-        {{current_news.clinic_name}}
+        {{current_news.clinic_name}} <br>
+
+        <!-- date when clinic is rejected -->
+        {{current_news.date_rejected}} <br>
     {% endfor %}
 {% else %}
     <h6 align='center'><em>No Activity occurs this time </em> </h5>
