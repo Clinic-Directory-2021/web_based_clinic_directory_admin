@@ -14,12 +14,16 @@
 <br>
 {% if news %}
     {% for current_news in news %}
-        <!-- date when clinic is accepted -->
-        {{current_news.date_accepted}} <br>
-        {{current_news.clinic_name}} <br>
 
-        <!-- date when clinic is rejected -->
-        {{current_news.date_rejected}} <br>
+        {% if current_news.date_rejected %}
+         <!-- date when clinic is rejected -->
+         Clinic With The Name of <strong>{{current_news.clinic_name}}</strong> is <strong>DECLINED</strong> on <strong>{{current_news.date_rejected}}</strong> <br>
+         <br>
+        {% else %}
+        <!-- date when clinic is accepted -->
+        Clinic With The Name of <strong>{{current_news.clinic_name}}</strong> is <strong>ACCEPTED</strong> on <strong>{{current_news.date_accepted}}</strong> <br>
+        <br>
+         {% endif %}
     {% endfor %}
 {% else %}
     <h6 align='center'><em>No Activity occurs this time </em> </h5>
