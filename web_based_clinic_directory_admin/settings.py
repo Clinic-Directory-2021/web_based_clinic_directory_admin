@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-cd5)y7bf%$mw4@5fzbb!4cm$94uw)tnhktgd&gqrttv#y@c5au
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', '']
+ALLOWED_HOSTS = ['127.0.0.1', 'https://clinic-directory-admin.herokuapp.com/']
 
 
 # Application definition
