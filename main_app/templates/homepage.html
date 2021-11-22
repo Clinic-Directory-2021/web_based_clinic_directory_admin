@@ -4,6 +4,8 @@
 <br>
 <div class="news">
 <h4>News and Clinic activity tracks</h4>
+The date with green color is <p style="color: green;">Accepted</p>
+The date with red color is<p style="color: red;">Rejected</p>
 <br>
 <br>
 <br>
@@ -14,12 +16,13 @@
 <br>
 {% if news %}
     {% for current_news in news %}
+<div style="background-color: bisque; margin-bottom: 10px;">
         <!-- date when clinic is accepted -->
-        {{current_news.date_accepted}} <br>
-        {{current_news.clinic_name}} <br>
-
+        <b>{{current_news.clinic_name}}</b> <br>
+        <p style="color: green;">{{current_news.date_accepted}}</p> <br>
         <!-- date when clinic is rejected -->
-        {{current_news.date_rejected}} <br>
+        <p style="color: red;">{{current_news.date_rejected}}</p> <br>
+</div>
     {% endfor %}
 {% else %}
     <h6 align='center'><em>No Activity occurs this time </em> </h5>
