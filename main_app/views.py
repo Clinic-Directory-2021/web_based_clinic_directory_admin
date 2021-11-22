@@ -24,7 +24,7 @@ config={
 }
 
 firebase = pyrebase.initialize_app(config)
-cred = credentials.Certificate("main_app\serviceAccountKey.json")
+cred = credentials.Certificate("main_app/serviceAccountKey.json")
 firebase_admin.initialize_app(cred)
 
 auth = firebase.auth()
@@ -180,7 +180,7 @@ def acceptClinic(request):
             'clinic_name': clinicName,
         })
 
-        email_message = 'Congratulations Your Request for your Clinic to be Added in Animal Clinic Directory has now been approved, You can now Sign In with Your Email and Password Provided on the Registration Page that You have Already Filled Up Before' ;
+        email_message = 'Congratulations Your Request for your Clinic to be Added in Animal Clinic Directory has now been approved, You can now Sign In with Your Email and Password Provided on the Registration Page that You have Already Filled Up Before'
 
         send_mail(
             'Animal Clinic Directory',
@@ -190,7 +190,7 @@ def acceptClinic(request):
             fail_silently=False,
         )
 
-        return redirect('request')
+        return HttpResponse('Accepted')
 
 def declineClinic(request):
     if request.method == 'POST':
@@ -198,14 +198,16 @@ def declineClinic(request):
         clinicImgDirectory = request.POST.get('clinicImgDirectory')
         clinicEmail = request.POST.get('clinicEmail')
         clinicName = request.POST.get('clinicName')
+        clinicPassword = request.POST.get('clinicPassword')
 
-        storage.delete(clinicImgDirectory, userId)
-
-        auth.delete_user_account(userId)
+        deleteUser = auth.sign_in_with_email_and_password(clinicEmail, clinicPassword)
+        auth.delete_user_account(deleteUser['idToken'])
 
         firestoreDB.collection('queue').document(userId).delete()
+
+        storage.delete(clinicImgDirectory, userId)
         
-        email_message = 'We Appreciate Your Effort But Your Request to add Your Clinic in Animal Clinic Directory Have Been Declined.' ;
+        email_message = 'We Appreciate Your Effort But Your Request to add Your Clinic in Animal Clinic Directory Have Been Declined.'
 
         send_mail(
             'Animal Clinic Directory',
@@ -225,5 +227,5 @@ def declineClinic(request):
             'clinic_name': clinicName,
         })
 
-        return redirect('request')
+        return HttpResponse('Declined')
 

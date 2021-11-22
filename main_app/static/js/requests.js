@@ -8,7 +8,7 @@ function clinicAccept(clinic_address, clinic_contact_number, clinic_description,
         confirmButtonText: 'Accept',
       }).then((result) => {
         if (result.isConfirmed) {
-         
+            $('#loader').show();
             $.ajax({
                 type: 'post',
                 url: "/acceptClinic/",
@@ -47,7 +47,7 @@ function clinicAccept(clinic_address, clinic_contact_number, clinic_description,
       })
 }
 
-function clinicDecline(user_id,clinic_img_directory, clinic_email , clinic_name){
+function clinicDecline(user_id,clinic_img_directory, clinic_email , clinic_name, password){
     Swal.fire({
         title: 'Do you really want to Decline this Clinic?',
         icon: 'question',
@@ -57,7 +57,7 @@ function clinicDecline(user_id,clinic_img_directory, clinic_email , clinic_name)
         denyButtonText: 'Decline',
       }).then((result) => {
         if (result.isDenied) {
-         
+            $('#loader').show();
             $.ajax({
                 type: 'post',
                 url: "/declineClinic/",
@@ -66,6 +66,7 @@ function clinicDecline(user_id,clinic_img_directory, clinic_email , clinic_name)
                     clinicImgDirectory: clinic_img_directory,
                     clinicEmail: clinic_email,
                     clinicName: clinic_name,
+                    clinicPassword: password,
                     csrfmiddlewaretoken: $("input[name='csrfmiddlewaretoken']").val(),
                     },
                 success: function(data){
