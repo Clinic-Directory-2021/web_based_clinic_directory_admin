@@ -8,7 +8,8 @@ from firebase_admin import firestore
 import pyrebase
 import firebase_admin
 
-import datetime
+import pytz
+from datetime import datetime
 
 from django.core.mail import send_mail
 
@@ -171,7 +172,9 @@ def acceptClinic(request):
 
         firestoreDB.collection('queue').document(userId).delete()
 
-        now = datetime.datetime.now()
+        # now = datetime.datetime.now()
+        tz = pytz.timezone('Asia/Hong_Kong')
+        now = datetime.now(tz)
 
         doc_ref2 = firestoreDB.collection('news').document(userId)
 
@@ -218,7 +221,9 @@ def declineClinic(request):
         )
 
 
-        now = datetime.datetime.now()
+        # now = datetime.datetime.now()
+        tz = pytz.timezone('Asia/Hong_Kong')
+        now = datetime.now(tz)
 
         doc_ref2 = firestoreDB.collection('news').document(userId)
 
