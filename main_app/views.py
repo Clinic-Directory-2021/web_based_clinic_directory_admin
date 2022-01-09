@@ -74,6 +74,8 @@ def request(request):
         data ={
             'request_queue': queue,
         }
+
+        print(queue)
     
         return render(request,'request.html', data)
     else:
