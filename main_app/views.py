@@ -47,7 +47,13 @@ def login(request):
 
 def homepage(request):
     if 'clinic_id' in request.session:
-        all_news = firestoreDB.collection('news').get()
+        news_ref = firestoreDB.collection('news')
+
+        query = news_ref.order_by("date")
+
+        # all_news = firestoreDB.collection('news').get()
+
+        all_news = query.get()
 
         news = []
 
@@ -183,8 +189,9 @@ def acceptClinic(request):
         doc_ref2 = firestoreDB.collection('news').document(userId)
 
         doc_ref2.set({
-            'date_accepted': now,
+            'date': now,
             'clinic_name': clinicName,
+            'type': "accepted",
         })
 
         email_message = 'Congratulations Your Request for your Clinic to be Added in Animal Clinic Directory has now been approved, You can now Sign In with Your Email and Password Provided on the Registration Page that You have Already Filled Up Before'
@@ -232,8 +239,9 @@ def declineClinic(request):
         doc_ref2 = firestoreDB.collection('news').document(userId)
 
         doc_ref2.set({
-            'date_rejected': now,
+            'date': now,
             'clinic_name': clinicName,
+            'type': "rejected",
         })
 
         return HttpResponse('Declined')
