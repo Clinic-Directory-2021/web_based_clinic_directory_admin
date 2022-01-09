@@ -10,17 +10,28 @@
        <button class="btn btn-danger">Decline</button>
    </div>
 </div> -->
-{% if request_queue %}
-
-{% for clinic_queue in request_queue %}
-{{time}}
-<div class="request-item">
-    <form>
-    {% csrf_token %}
-    </form>
-    <p><strong>{{clinic_queue.email}}</strong> with a name of <strong>{{clinic_queue.clinic_name}}</strong> has request for your directory.</p>
-    <div class="request-action">
-        <button class="btn btn-success" onclick="clinicAccept(
+<table class="table w-100" style="border: 1px solid grey; overflow-y: hidden;">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Email</th>
+        <th scope="col">Clinic Name</th>
+        <th>Request Time</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% if request_queue %}
+    {% for clinic_queue in request_queue %}
+      <tr>
+        <td scope="row">{{forloop.counter}}</td>
+        <td>{{clinic_queue.email}}</td>
+        <td>{{clinic_queue.clinic_name}}</td>
+        <td>{{time}}</td>
+        <td>
+            <form>
+            {% csrf_token %}
+            <button class="btn btn-success" onclick="clinicAccept(
         '{{clinic_queue.clinic_address}}'
         ,'{{clinic_queue.clinic_contact_number}}'
         ,'{{clinic_queue.clinic_description}}'
@@ -36,14 +47,17 @@
         ,'{{clinic_queue.user_id}}'
         )">Accept</button>
         <button class="btn btn-danger" onclick="clinicDecline('{{clinic_queue.user_id}}','{{clinic_queue.clinic_img_directory}}','{{clinic_queue.email}}' ,'{{clinic_queue.clinic_name}}' ,'{{clinic_queue.password}}')">Decline</button>
-    </div>
- </div>
-
- {% endfor %}
-{% else %}
-<h6 align="center"><em>No Request available.</em></h6>
-
-{% endif %}
+        </form>
+        </td>
+      </tr>
+      {% endfor %}
+      {% else %}
+      <tr>
+          <td rowspan="3" colspan="2" style="text-align: center;">No request</td>
+      </tr>
+      {% endif %}
+    </tbody>
+  </table>
 
 <div id="loader"></div>
 </div>

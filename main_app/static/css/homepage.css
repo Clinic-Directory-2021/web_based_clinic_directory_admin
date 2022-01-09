@@ -8,7 +8,7 @@ h1{
 
 @media (min-width:320px)  { /* smartphones, iPhone, portrait 480x320 phones */ 
     .news{
-        width: 95%;
+        width: 100%;
         height: 500px;
     }
     .news h4{
@@ -27,7 +27,7 @@ h1{
 }
 @media (min-width:1025px) { /* big landscape tablets, laptops, and desktops */ 
     .news{
-        width: 60%;
+        width: 100%;
         height: 500px;
     }
     

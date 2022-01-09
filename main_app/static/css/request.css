@@ -1,6 +1,7 @@
 @media (min-width:320px)  { /* smartphones, iPhone, portrait 480x320 phones */ 
     .request-div{
-        background-color: #E0C097;
+        padding: 10px;
+        background-color: gainsboro;
         width: 100%;
         margin: 7px;
         overflow-y: auto;

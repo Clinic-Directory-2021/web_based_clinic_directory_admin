@@ -1,7 +1,7 @@
 *{
     font-family: Arial, Helvetica, sans-serif;
     margin: 0;
-    overflow-x: hidden;
+    overflow: hidden;
 }
 /* width */
 ::-webkit-scrollbar {

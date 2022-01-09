@@ -1,36 +1,44 @@
 {% extends 'homepage_base.html'%}
 {% block content %}
 <h1>Welcome Back, <em>Admin</em></h1>
-<br>
-<div class="news">
+
+<div style="padding: 50px; background-color: gainsboro;">
 <h4>News and Clinic activity tracks</h4>
 <br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-{% if news %}
-    {% for current_news in news %}
-    <div style="background-color: bisque; margin-bottom: 10px;">
-        {% if current_news.date_rejected %}
-        
-         <!-- date when clinic is rejected -->
-         Clinic With The Name of <strong>{{current_news.clinic_name}}</strong> is <strong style="color:red">DECLINED</strong> on <strong>{{current_news.date_rejected}}</strong> <br>
-         <br>
-        {% else %}
-        <!-- date when clinic is accepted -->
-        Clinic With The Name of <strong>{{current_news.clinic_name}}</strong> is <strong style="color:green"">ACCEPTED</strong> on <strong>{{current_news.date_accepted}}</strong> <br>
-        <br>
-         {% endif %}
-        </div>
-    {% endfor %}
-{% else %}
-    <h6 align='center'><em>No Activity occurs this time </em> </h5>
-
-{% endif %}
-
+<table class="table w-100" style="border: 1px solid grey; overflow-y: hidden;">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Clinic Name</th>
+        <th scope="col">Date Accepted</th>
+        <th scope="col">Status</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% if news %}
+        {% for current_news in news %}
+        {% if current_news.type == 'rejected' %}
+      <tr class="table-danger">
+        <td scope="row">{{forloop.counter}}</td>
+        <td>{{current_news.clinic_name}}</td>
+        <td>{{current_news.date}}</td>
+        <td>Rejected</td>
+      </tr>
+      {% else %}
+      <tr class="table-success">
+        <td scope="row">{{forloop.counter}}</td>
+        <td>{{current_news.clinic_name}}</td>
+        <td>{{current_news.date}}</td>
+        <td>Accepted</td>
+      </tr>
+      {% endif %}
+      {% endfor %}
+      {% else %}
+      <tr>
+          <td rowspan="3" colspan="2" style="text-align: center;">No record</td>
+      </tr>
+      {% endif %}
+    </tbody>
+  </table>
 </div>
 {% endblock content %}
