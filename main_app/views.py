@@ -2,13 +2,16 @@ from django.shortcuts import render, redirect
 
 from django.http import HttpResponse
 
+import firebase_admin
 
+from firebase_admin import auth
 from firebase_admin import credentials
 from firebase_admin import firestore
 import pyrebase
-import firebase_admin
 
-import datetime
+
+import pytz
+from datetime import datetime
 
 from django.core.mail import send_mail
 
@@ -27,7 +30,7 @@ firebase = pyrebase.initialize_app(config)
 cred = credentials.Certificate("main_app/serviceAccountKey.json")
 firebase_admin.initialize_app(cred)
 
-auth = firebase.auth()
+auth_pyrebase = firebase.auth()
 db = firebase.database()
 firestoreDB = firestore.client()
 
@@ -44,7 +47,13 @@ def login(request):
 
 def homepage(request):
     if 'clinic_id' in request.session:
-        all_news = firestoreDB.collection('news').get()
+        news_ref = firestoreDB.collection('news')
+
+        query = news_ref.order_by("date")
+
+        # all_news = firestoreDB.collection('news').get()
+
+        all_news = query.get()
 
         news = []
 
@@ -73,6 +82,8 @@ def request(request):
         data ={
             'request_queue': queue,
         }
+
+        print(queue)
     
         return render(request,'request.html', data)
     else:
@@ -116,7 +127,7 @@ def login_validation(request):
         password = request.POST.get('login_password')
     
     try:
-        user_signin = auth.sign_in_with_email_and_password(email,password)
+        user_signin = auth_pyrebase.sign_in_with_email_and_password(email,password)
         
 
         if user_signin['localId'] == 'DhLUuRJ7BOOkx9jF78JzvVSxTLb2':
@@ -171,13 +182,16 @@ def acceptClinic(request):
 
         firestoreDB.collection('queue').document(userId).delete()
 
-        now = datetime.datetime.now()
+        # now = datetime.datetime.now()
+        tz = pytz.timezone('Asia/Hong_Kong')
+        now = datetime.now(tz)
 
         doc_ref2 = firestoreDB.collection('news').document(userId)
 
         doc_ref2.set({
-            'date_accepted': now,
+            'date': now,
             'clinic_name': clinicName,
+            'type': "accepted",
         })
 
         email_message = 'Congratulations Your Request for your Clinic to be Added in Animal Clinic Directory has now been approved, You can now Sign In with Your Email and Password Provided on the Registration Page that You have Already Filled Up Before'
@@ -200,8 +214,8 @@ def declineClinic(request):
         clinicName = request.POST.get('clinicName')
         clinicPassword = request.POST.get('clinicPassword')
 
-        deleteUser = auth.sign_in_with_email_and_password(clinicEmail, clinicPassword)
-        auth.delete_user_account(deleteUser['idToken'])
+        deleteUser = auth_pyrebase.sign_in_with_email_and_password(clinicEmail, clinicPassword)
+        auth_pyrebase.delete_user_account(deleteUser['idToken'])
 
         firestoreDB.collection('queue').document(userId).delete()
 
@@ -218,14 +232,30 @@ def declineClinic(request):
         )
 
 
-        now = datetime.datetime.now()
+        # now = datetime.datetime.now()
+        tz = pytz.timezone('Asia/Hong_Kong')
+        now = datetime.now(tz)
 
         doc_ref2 = firestoreDB.collection('news').document(userId)
 
         doc_ref2.set({
-            'date_rejected': now,
+            'date': now,
             'clinic_name': clinicName,
+            'type': "rejected",
         })
 
         return HttpResponse('Declined')
 
+def deleteClinic(request):
+    if request.method == 'GET':
+        clinic_id = request.GET.get('clinic_id')
+        image_directory = request.GET.get('image_directory')
+
+
+        firestoreDB.collection('users').document(clinic_id).delete()
+
+        auth.delete_user(clinic_id)
+
+        storage.delete(image_directory, clinic_id)
+
+        return redirect('clinic')

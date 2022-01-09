@@ -10,6 +10,7 @@
        <button class="btn btn-danger">Decline</button>
    </div>
 </div> -->
+<<<<<<< HEAD
 <table class="table w-100" style="border: 1px solid grey; overflow-y: hidden;">
     <thead>
       <tr>
@@ -33,14 +34,28 @@
             {% csrf_token %}
             <button class="btn btn-success" onclick="clinicAccept(
         '{{clinic_queue.clinic_address}}'
+=======
+{% if request_queue %}
+
+{% for clinic_queue in request_queue %}
+{{time}}
+<div class="request-item">
+    <form>
+    {% csrf_token %}
+    </form>
+    <p><strong>{{clinic_queue.email}}</strong> with a name of <strong>{{clinic_queue.clinic_name}}</strong> has request for your directory.</p>
+    <div class="request-action">
+        <button class="btn btn-success" onclick="clinicAccept(
+        '{{clinic_queue.clinic_address |escapejs}}'
+>>>>>>> 2324d13cadc57901c22e4597f3ed5b9b1e5e76dd
         ,'{{clinic_queue.clinic_contact_number}}'
-        ,'{{clinic_queue.clinic_description}}'
+        ,'{{clinic_queue.clinic_description |escapejs}}'
         ,'{{clinic_queue.clinic_img_directory}}'
         ,'{{clinic_queue.clinic_img_url}}'
-        ,'{{clinic_queue.clinic_name}}'
+        ,'{{clinic_queue.clinic_name |escapejs}}'
         ,'{{clinic_queue.opening_time}}'
         ,'{{clinic_queue.closing_time}}'
-        ,'{{clinic_queue.email}}'
+        ,'{{clinic_queue.email |escapejs}}'
         ,'{{clinic_queue.latitude}}'
         ,'{{clinic_queue.longitude}}'
         ,'{{clinic_queue.total_items}}'
