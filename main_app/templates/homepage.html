@@ -5,7 +5,6 @@
 <div style="padding: 50px; background-color: gainsboro;">
 <h4>News and Clinic activity tracks</h4>
 <br>
-<<<<<<< HEAD
 <table class="table w-100" style="border: 1px solid grey; overflow-y: hidden;">
     <thead>
       <tr>
@@ -41,34 +40,5 @@
       {% endif %}
     </tbody>
   </table>
-=======
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-{% if news %}
-    {% for current_news in news reversed %}
-    <div style="background-color: bisque; margin-bottom: 10px;">
-        {% if current_news.type == 'rejected' %}
-        
-         <!-- date when clinic is rejected -->
-         Clinic With The Name of <strong>{{current_news.clinic_name}}</strong> is <strong style="color:red">DECLINED</strong> on <strong>{{current_news.date}}</strong> <br>
-         <br>
-        {% else %}
-        <!-- date when clinic is accepted -->
-        Clinic With The Name of <strong>{{current_news.clinic_name}}</strong> is <strong style="color:green"">ACCEPTED</strong> on <strong>{{current_news.date}}</strong> <br>
-        <br>
-         {% endif %}
-        </div>
-    {% endfor %}
-{% else %}
-    <h6 align='center'><em>No Activity occurs this time </em> </h5>
-
-{% endif %}
-
->>>>>>> 2324d13cadc57901c22e4597f3ed5b9b1e5e76dd
 </div>
 {% endblock content %}
