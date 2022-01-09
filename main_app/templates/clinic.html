@@ -1,4 +1,12 @@
-{% extends 'homepage_base.html'%}
+{% include 'homepage_base.html'%}
+{% if session == 'clinic' %}
+<script>
+  $('#clinic').css("background-color","#E0C097")
+  $('#clinic').css("border-radius","25px")
+  $('#clinic').css("text-align","center")
+  $('#clinic').css("color","black")
+</script>
+{% endif %}
 {% block content %}
 
 <div class="clinic-content">

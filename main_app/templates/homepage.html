@@ -1,4 +1,12 @@
-{% extends 'homepage_base.html'%}
+{% include 'homepage_base.html'%}
+{% if session == 'homepage' %}
+<script>
+  $('#homepage').css("background-color","#E0C097")
+  $('#homepage').css("border-radius","25px")
+  $('#homapage').css("text-align","center")
+  $('#homepage').css("color","black")
+</script>
+{% endif %}
 {% block content %}
 <h1>Welcome Back, <em>Admin</em></h1>
 

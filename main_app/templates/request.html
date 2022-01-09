@@ -1,4 +1,12 @@
-{% extends 'homepage_base.html'%}
+{% include 'homepage_base.html'%}
+{% if session == 'request' %}
+<script>
+  $('#request').css("background-color","#E0C097")
+  $('#request').css("border-radius","25px")
+  $('#request').css("text-align","center")
+  $('#request').css("color","black")
+</script>
+{% endif %}
 {% block content %}
 <div class="request-div">
 <h5 align="center">Request</h5>

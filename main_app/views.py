@@ -46,6 +46,7 @@ def login(request):
         return redirect('/homepage')
 
 def homepage(request):
+    request.session['session'] = "homepage"
     if 'clinic_id' in request.session:
         news_ref = firestoreDB.collection('news')
 
@@ -63,6 +64,7 @@ def homepage(request):
 
         data ={
             'news': news,
+            'session':request.session['session']
         }
         return render(request,'homepage.html', data)
     else:
@@ -70,6 +72,7 @@ def homepage(request):
     #return render(request,'homepage.html')
 
 def request(request):
+    request.session['session'] = "request"
     if 'clinic_id' in request.session:
         clinic_requests = firestoreDB.collection('queue').get()
 
@@ -81,6 +84,7 @@ def request(request):
 
         data ={
             'request_queue': queue,
+            'session':request.session['session']
         }
 
         print(queue)
@@ -90,6 +94,7 @@ def request(request):
         return redirect('login')
 
 def clinic(request):
+    request.session['session'] = "clinic"
     if 'clinic_id' in request.session:
         users = firestoreDB.collection('users').get()
 
@@ -111,6 +116,7 @@ def clinic(request):
         else:
             data = {
                 'user_data': user_data,
+                'session':request.session['session']
             }
 
         return render(request,'clinic.html', data)  
