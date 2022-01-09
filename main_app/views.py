@@ -2,11 +2,13 @@ from django.shortcuts import render, redirect
 
 from django.http import HttpResponse
 
+import firebase_admin
 
+from firebase_admin import auth
 from firebase_admin import credentials
 from firebase_admin import firestore
 import pyrebase
-import firebase_admin
+
 
 import pytz
 from datetime import datetime
@@ -28,7 +30,7 @@ firebase = pyrebase.initialize_app(config)
 cred = credentials.Certificate("main_app/serviceAccountKey.json")
 firebase_admin.initialize_app(cred)
 
-auth = firebase.auth()
+auth_pyrebase = firebase.auth()
 db = firebase.database()
 firestoreDB = firestore.client()
 
@@ -119,7 +121,7 @@ def login_validation(request):
         password = request.POST.get('login_password')
     
     try:
-        user_signin = auth.sign_in_with_email_and_password(email,password)
+        user_signin = auth_pyrebase.sign_in_with_email_and_password(email,password)
         
 
         if user_signin['localId'] == 'DhLUuRJ7BOOkx9jF78JzvVSxTLb2':
@@ -205,8 +207,8 @@ def declineClinic(request):
         clinicName = request.POST.get('clinicName')
         clinicPassword = request.POST.get('clinicPassword')
 
-        deleteUser = auth.sign_in_with_email_and_password(clinicEmail, clinicPassword)
-        auth.delete_user_account(deleteUser['idToken'])
+        deleteUser = auth_pyrebase.sign_in_with_email_and_password(clinicEmail, clinicPassword)
+        auth_pyrebase.delete_user_account(deleteUser['idToken'])
 
         firestoreDB.collection('queue').document(userId).delete()
 
@@ -236,3 +238,16 @@ def declineClinic(request):
 
         return HttpResponse('Declined')
 
+def deleteClinic(request):
+    if request.method == 'GET':
+        clinic_id = request.GET.get('clinic_id')
+        image_directory = request.GET.get('image_directory')
+
+
+        firestoreDB.collection('users').document(clinic_id).delete()
+
+        auth.delete_user(clinic_id)
+
+        storage.delete(image_directory, clinic_id)
+
+        return redirect('clinic')

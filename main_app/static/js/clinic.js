@@ -1,5 +1,8 @@
 $('.right').hide();
 
+clinic_id = "";
+image_directory = "";
+
 function showClinicInfo(clinic_address, clinic_contact_number, clinic_description,clinic_img_directory,clinic_img_url,clinic_name,opening_time,closing_time,email,latitude,longitude,total_items,user_id ){
     $(".available-items").remove();
 
@@ -21,6 +24,10 @@ function showClinicInfo(clinic_address, clinic_contact_number, clinic_descriptio
     $('#showClinicDescription').html(clinic_description);
 
     $('#loading').show();
+
+    clinic_id = user_id;
+    image_directory = clinic_img_directory
+
     $.post({
         type: 'post',
         url: "/clinic/",
@@ -52,3 +59,24 @@ function showClinicInfo(clinic_address, clinic_contact_number, clinic_descriptio
 
 }
 
+
+
+function deleteClinic(){
+    Swal.fire({
+        icon: 'question',
+        title: 'Do you Really Want to Delete this Clinic?',
+        text: 'This Cannot Be Undone!',
+        showDenyButton: true,
+        showCancelButton: true,
+        showConfirmButton: false,
+        denyButtonText: `Delete`,
+      }).then((result) => {
+          if (result.isDenied) {
+            var url = "/deleteClinic";
+
+            // Construct the full URL with "id"
+            document.location.href = url + "?clinic_id=" + clinic_id+ "&image_directory=" + image_directory;
+        }
+      })
+
+}
