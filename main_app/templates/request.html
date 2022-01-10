@@ -39,7 +39,7 @@
         <td>
             <form>
             {% csrf_token %}
-            <button class="btn btn-success" onclick="clinicAccept(
+            <button type="button" class="btn btn-success" onclick="clinicAccept(
         '{{clinic_queue.clinic_address}}'
         ,'{{clinic_queue.clinic_contact_number}}'
         ,'{{clinic_queue.clinic_description |escapejs}}'
@@ -54,7 +54,7 @@
         ,'{{clinic_queue.total_items}}'
         ,'{{clinic_queue.user_id}}'
         )">Accept</button>
-        <button class="btn btn-danger" onclick="clinicDecline('{{clinic_queue.user_id}}','{{clinic_queue.clinic_img_directory}}','{{clinic_queue.email}}' ,'{{clinic_queue.clinic_name}}' ,'{{clinic_queue.password}}')">Decline</button>
+        <button type="button" class="btn btn-danger" onclick="clinicDecline('{{clinic_queue.user_id}}','{{clinic_queue.clinic_img_directory}}','{{clinic_queue.email}}' ,'{{clinic_queue.clinic_name}}' ,'{{clinic_queue.password}}')">Decline</button>
         </form>
         </td>
       </tr>
