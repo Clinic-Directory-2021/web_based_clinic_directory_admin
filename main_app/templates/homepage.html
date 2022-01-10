@@ -24,7 +24,7 @@
     </thead>
     <tbody>
         {% if news %}
-        {% for current_news in news %}
+        {% for current_news in news reveresed %}
         {% if current_news.type == 'rejected' %}
       <tr class="table-danger">
         <td scope="row">{{forloop.counter}}</td>
