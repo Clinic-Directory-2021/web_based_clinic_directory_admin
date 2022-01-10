@@ -29,15 +29,15 @@
         </div>  -->
 
         <div class="clinic-item" onclick="showClinicInfo(
-        '{{values.clinic_address}}'
+        '{{values.clinic_address |escapejs}}'
         ,'{{values.clinic_contact_number}}'
-        ,'{{values.clinic_description}}'
+        ,'{{values.clinic_description |escapejs}}'
         ,'{{values.clinic_img_directory}}'
         ,'{{values.clinic_img_url}}'
-        ,'{{values.clinic_name}}'
+        ,'{{values.clinic_name |escapejs}}'
         ,'{{values.opening_time}}'
         ,'{{values.closing_time}}'
-        ,'{{values.email}}'
+        ,'{{values.email |escapejs}}'
         ,'{{values.latitude}}'
         ,'{{values.longitude}}'
         ,'{{values.total_items}}'
