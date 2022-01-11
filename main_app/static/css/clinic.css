@@ -11,16 +11,16 @@
 }
 @media (min-width:320px)  { /* smartphones, iPhone, portrait 480x320 phones */ 
     .clinic-content{
-        display: block;
         width: 100%;
     }
     .clinic-content .left{
-        height: 20vh;
+        height: 400px;
         width: 100%;
+        overflow-y: auto;
     }
     .clinic-content .right{
         width: 100%;
-        height: 80vh;
+        height: 50%;
     }
 
     .clinic-div{
@@ -62,7 +62,7 @@
       }
       .clinic-content .right .info-header{
           width: 100%;
-          height: 350px;
+          height: 450px;
           background-color:gainsboro;
           display: flex;
       }
