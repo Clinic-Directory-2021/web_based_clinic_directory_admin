@@ -40,7 +40,7 @@
             <form>
             {% csrf_token %}
             <button type="button" class="btn btn-success" onclick="clinicAccept(
-        '{{clinic_queue.clinic_address}}'
+        '{{clinic_queue.clinic_address |escapejs}}'
         ,'{{clinic_queue.clinic_contact_number}}'
         ,'{{clinic_queue.clinic_description |escapejs}}'
         ,'{{clinic_queue.clinic_img_directory}}'
