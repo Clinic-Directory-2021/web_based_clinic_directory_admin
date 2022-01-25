@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% include 'base.html' %}
 {% block content %}
 <div class='login-content'>
     <form method='post' id="loginForm">
@@ -14,5 +14,10 @@
     <br>
     </form>
 </div>
+<br>
+<br>
+<br>
+<br>
+{% include 'footer.html' %}
 <div id="loader"></div>
 {% endblock content %}
