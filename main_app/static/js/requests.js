@@ -82,19 +82,19 @@ function clinicDecline(user_id,clinic_img_directory, clinic_email , clinic_name,
         }
       })
     
-    Swal.fire({
-        input: 'textarea',
-        inputLabel: 'Reason',
-        inputPlaceholder: '',
-        inputAttributes: {
-          'aria-label': 'Type your Reasons here'
-        },
-        showCancelButton: true
-      })
+    // Swal.fire({
+    //     input: 'textarea',
+    //     inputLabel: 'Reason',
+    //     inputPlaceholder: '',
+    //     inputAttributes: {
+    //       'aria-label': 'Type your Reasons here'
+    //     },
+    //     showCancelButton: true
+    //   })
       
-      if (text) {
+    //   if (text) {
         
-      }
+    //   }
     // Swal.fire({
     //     title: 'Do you really want to Decline this Clinic?',
     //     icon: 'question',
