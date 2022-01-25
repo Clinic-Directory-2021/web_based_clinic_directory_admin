@@ -220,6 +220,8 @@ def declineClinic(request):
         clinicName = request.POST.get('clinicName')
         clinicPassword = request.POST.get('clinicPassword')
 
+        reasons = request.POST.get('reasons')
+
         deleteUser = auth_pyrebase.sign_in_with_email_and_password(clinicEmail, clinicPassword)
         auth_pyrebase.delete_user_account(deleteUser['idToken'])
 
@@ -227,7 +229,7 @@ def declineClinic(request):
 
         storage.delete(clinicImgDirectory, userId)
         
-        email_message = 'We Appreciate Your Effort But Your Request to add Your Clinic in Animal Clinic Directory Have Been Declined.'
+        email_message = 'We Appreciate Your Effort But Your Request to add Your Clinic in Animal Clinic Directory Have Been Declined. Because of The Following Reasons: ' + reasons
 
         send_mail(
             'Animal Clinic Directory',

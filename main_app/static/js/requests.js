@@ -48,16 +48,18 @@ function clinicAccept(clinic_address, clinic_contact_number, clinic_description,
 }
 
 function clinicDecline(user_id,clinic_img_directory, clinic_email , clinic_name, password){
-    Swal.fire({
-        title: 'Do you really want to Decline this Clinic?',
-        icon: 'question',
-        showCancelButton: true,
-        showDenyButton: true,
-        showConfirmButton: false,
-        denyButtonText: 'Decline',
-      }).then((result) => {
-        if (result.isDenied) {
-            $('#loader').show();
+    const { value: text } = await Swal.fire({
+        input: 'textarea',
+        inputLabel: 'Reason',
+        inputPlaceholder: 'Type your Reason Why This Clinic is Rejected',
+        inputAttributes: {
+          'aria-label': 'Type your Reasons here'
+        },
+        showCancelButton: true
+      })
+      
+      if (text) {
+        $('#loader').show();
             $.ajax({
                 type: 'post',
                 url: "/declineClinic/",
@@ -67,6 +69,7 @@ function clinicDecline(user_id,clinic_img_directory, clinic_email , clinic_name,
                     clinicEmail: clinic_email,
                     clinicName: clinic_name,
                     clinicPassword: password,
+                    reasons: text,
                     csrfmiddlewaretoken: $("input[name='csrfmiddlewaretoken']").val(),
                     },
                 success: function(data){
@@ -82,8 +85,19 @@ function clinicDecline(user_id,clinic_img_directory, clinic_email , clinic_name,
                 },
           
             });
+      }
+    // Swal.fire({
+    //     title: 'Do you really want to Decline this Clinic?',
+    //     icon: 'question',
+    //     showCancelButton: true,
+    //     showDenyButton: true,
+    //     showConfirmButton: false,
+    //     denyButtonText: 'Decline',
+    //   }).then((result) => {
+    //     if (result.isDenied) {
+            
 
 
-        }
-      })
+    //     }
+    //   })
 }
