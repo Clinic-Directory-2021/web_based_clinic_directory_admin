@@ -48,18 +48,12 @@ function clinicAccept(clinic_address, clinic_contact_number, clinic_description,
 }
 
 function clinicDecline(user_id,clinic_img_directory, clinic_email , clinic_name, password){
-    const { value: text } = await Swal.fire({
-        input: 'textarea',
-        inputLabel: 'Reason',
-        inputPlaceholder: 'Type your Reason Why This Clinic is Rejected',
-        inputAttributes: {
-          'aria-label': 'Type your Reasons here'
-        },
-        showCancelButton: true
-      })
-      
-      if (text) {
-        $('#loader').show();
+    Swal.fire({
+        title: 'Type your Reason Why This Clinic is Rejected',
+        input: 'textarea'
+      }).then(function(result) {
+        if (result.value) {
+          $('#loader').show();
             $.ajax({
                 type: 'post',
                 url: "/declineClinic/",
@@ -69,7 +63,7 @@ function clinicDecline(user_id,clinic_img_directory, clinic_email , clinic_name,
                     clinicEmail: clinic_email,
                     clinicName: clinic_name,
                     clinicPassword: password,
-                    reasons: text,
+                    reasons: result.value,
                     csrfmiddlewaretoken: $("input[name='csrfmiddlewaretoken']").val(),
                     },
                 success: function(data){
@@ -85,6 +79,21 @@ function clinicDecline(user_id,clinic_img_directory, clinic_email , clinic_name,
                 },
           
             });
+        }
+      })
+    
+    Swal.fire({
+        input: 'textarea',
+        inputLabel: 'Reason',
+        inputPlaceholder: '',
+        inputAttributes: {
+          'aria-label': 'Type your Reasons here'
+        },
+        showCancelButton: true
+      })
+      
+      if (text) {
+        
       }
     // Swal.fire({
     //     title: 'Do you really want to Decline this Clinic?',
