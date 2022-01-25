@@ -1,13 +1,13 @@
 {% include 'homepage_base.html'%}
 {% if session == 'clinic' %}
 <script>
-  $('#clinic').css("background-color","#E0C097")
+  $('#clinic').css("background-color","#178CA4")
   $('#clinic').css("border-radius","25px")
   $('#clinic').css("text-align","center")
-  $('#clinic').css("color","black")
 </script>
 {% endif %}
 {% block content %}
+<div style="margin-bottom: 50px;">
 
 <div class="clinic-content">
     <div class="left">
@@ -82,13 +82,13 @@
             </div>
             
         </div>
-        <h5 style="margin:10px"><em>Available items</em></h5>
+        <h5 style="margin:10px; padding-bottom: 10px;"><em>Available items</em></h5>
         <div class="info-body">
             <div id="loading"></div>
-            
         </div>
     </div>
-   
 </div>
 {% include 'footer.html' %}
+</div>
+
 {% endblock content %}

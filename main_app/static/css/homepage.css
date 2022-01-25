@@ -3,7 +3,7 @@ h1{
 }
 .news{
     margin: 10px;
-    background-color: #E0C097;
+    background-color: #178CA4;
 }
 
 @media (min-width:320px)  { /* smartphones, iPhone, portrait 480x320 phones */ 
@@ -13,7 +13,7 @@ h1{
     }
     .news h4{
         text-align: center;
-        box-shadow: 0 0 50px #5C3D2E;
+        box-shadow: 0 0 50px #072A40;
     }
 }
 @media (min-width:481px)  { /* portrait e-readers (Nook/Kindle), smaller tablets @ 600 or @ 640 wide. */ 

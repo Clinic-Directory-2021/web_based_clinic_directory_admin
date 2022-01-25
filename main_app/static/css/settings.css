@@ -6,7 +6,7 @@
     .settings-content .left{
         width: 20%;
         height: 100vh;
-        color: #2D2424;
+        color: #072A40;
         font-weight: bold;
         display: none;
     }
@@ -14,14 +14,14 @@
         width: 100%;
         height: 100vh;
         background-color: gainsboro;
-        color: #2D2424;
+        color: #072A40;
         font-weight: bold;
     }
     .credentials{
         width: 100%;
         padding: 10px;
         border-radius: 5px;
-        border: 1.5px solid #E0C097;
+        border: 1.5px solid #178CA4;
         margin-bottom: 50px;
     }
     .holder{
@@ -36,8 +36,8 @@
         width: 100%;
         padding: 10px;
         border-radius: 5px;
-        background-color: #B85C38;
-        color: #E0C097;
+        background-color: #072A40;
+        color: #178CA4;
         font-weight: bold;
         font-size: 18px;
         border: 0;
@@ -53,7 +53,7 @@
     .settings-content .left{
         width: 20%;
         height: 100vh;
-        color: #2D2424;
+        color: #072A40;
         font-weight: bold;
         display: block;
     }
@@ -61,7 +61,7 @@
         width: 100%;
         height: 100vh;
         background-color: gainsboro;
-        color: #2D2424;
+        color: #072A40;
         font-weight: bold;
     }
 }

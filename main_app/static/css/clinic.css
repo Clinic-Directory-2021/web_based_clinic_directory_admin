@@ -6,7 +6,7 @@
     height: 100vh;
 }
 .available-items:hover{
-    background-color: #5C3D2E;
+    background-color: #072A40;
     color: white;
 }
 @media (min-width:320px)  { /* smartphones, iPhone, portrait 480x320 phones */ 
@@ -24,12 +24,12 @@
     }
 
     .clinic-div{
-        background-color: #E0C097;
+        background-color: #178CA4;
         width: 100%;
     }
     .clinic-div h6{
         color: #2D2424;
-        box-shadow: 0 0 50px #5C3D2E;
+        box-shadow: 0 0 50px #072A40;
     }
     .clinic-div .clinic-item{
         display: flex;
@@ -42,7 +42,7 @@
         height: 70px;
         margin:10px 10px 10px 20px;
         border-radius: 50%;
-        border: 1px solid #5C3D2E;
+        border: 1px solid #072A40;
     }
     .clinic-div .clinic-item p{
         font-size: 14px;
@@ -70,7 +70,7 @@
           height: 200px;
           border-radius: 50%;
           margin: 20px;
-          border: 5px  double #5C3D2E;
+          border: 5px  double #072A40;
       }
       .clinic-content .right .info-header .info-text{
           margin-top: 50px
@@ -79,7 +79,7 @@
           width: 220px;
           height: 220px;
           margin: 5px;
-          border:1px solid #5C3D2E;
+          border:1px solid #072A40;
           float: left;
           cursor: pointer;
       }
