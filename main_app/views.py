@@ -125,7 +125,10 @@ def clinic(request):
         return redirect('login')
 
 def settings(request):
-    return render(request,'settings.html')
+    if 'clinic_id' in request.session:
+        return render(request,'settings.html')
+    else:
+        return redirect('login')
 
 def login_validation(request):
     if request.method == 'POST':
