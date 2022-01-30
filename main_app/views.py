@@ -221,12 +221,14 @@ def declineClinic(request):
         clinicImgDirectory = request.POST.get('clinicImgDirectory')
         clinicEmail = request.POST.get('clinicEmail')
         clinicName = request.POST.get('clinicName')
-        clinicPassword = request.POST.get('clinicPassword')
+        # clinicPassword = request.POST.get('clinicPassword')
 
         reasons = request.POST.get('reasons')
 
-        deleteUser = auth_pyrebase.sign_in_with_email_and_password(clinicEmail, clinicPassword)
-        auth_pyrebase.delete_user_account(deleteUser['idToken'])
+        # deleteUser = auth_pyrebase.sign_in_with_email_and_password(clinicEmail, clinicPassword)
+        # auth_pyrebase.delete_user_account(deleteUser['idToken'])
+
+        auth.delete_user(userId)
 
         firestoreDB.collection('queue').document(userId).delete()
 

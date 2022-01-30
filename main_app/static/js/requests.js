@@ -47,7 +47,7 @@ function clinicAccept(clinic_address, clinic_contact_number, clinic_description,
       })
 }
 
-function clinicDecline(user_id,clinic_img_directory, clinic_email , clinic_name, password){
+function clinicDecline(user_id,clinic_img_directory, clinic_email , clinic_name){
     Swal.fire({
         title: 'Type your Reason Why This Clinic is Rejected',
         input: 'textarea'
@@ -62,7 +62,6 @@ function clinicDecline(user_id,clinic_img_directory, clinic_email , clinic_name,
                     clinicImgDirectory: clinic_img_directory,
                     clinicEmail: clinic_email,
                     clinicName: clinic_name,
-                    clinicPassword: password,
                     reasons: result.value,
                     csrfmiddlewaretoken: $("input[name='csrfmiddlewaretoken']").val(),
                     },
