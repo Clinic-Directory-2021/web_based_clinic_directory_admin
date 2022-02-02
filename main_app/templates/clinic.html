@@ -43,6 +43,7 @@
         ,'{{values.longitude}}'
         ,'{{values.total_items}}'
         ,'{{values.user_id}}'
+        ,'{{values.clinicCategory}}'
         )" > 
             <img src="{{values.clinic_img_url}}" alt="" style="width: 20%;">
             <br>
@@ -73,10 +74,11 @@
                 <img src="../static/images/rate.png" alt="rate" width="24" height="24">
                 <img src="../static/images/rate.png" alt="rate" width="24" height="24">
                 <p><strong>5.0</strong></p>
-                <p id="showClinicTime">Opning and Closing Time</p>
+                <p id="showClinicTime">Opening and Closing Time</p>
                 <p id="showClinicNumber"><strong>Contact number</strong></p>
                 <p id="showClinicDescription"><em>Description sample here</em></p>
-
+                <p id="showClinicCategory"><em>Category sample here</em></p>
+                
                 <button type="button" onclick="deleteClinic();">Delete</button>
 
             </div>

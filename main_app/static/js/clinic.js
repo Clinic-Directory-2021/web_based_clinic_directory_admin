@@ -3,7 +3,7 @@ $('.right').hide();
 clinic_id = "";
 image_directory = "";
 
-function showClinicInfo(clinic_address, clinic_contact_number, clinic_description,clinic_img_directory,clinic_img_url,clinic_name,opening_time,closing_time,email,latitude,longitude,total_items,user_id ){
+function showClinicInfo(clinic_address, clinic_contact_number, clinic_description,clinic_img_directory,clinic_img_url,clinic_name,opening_time,closing_time,email,latitude,longitude,total_items,user_id,clinicCategory ){
     $(".available-items").remove();
 
 
@@ -22,6 +22,9 @@ function showClinicInfo(clinic_address, clinic_contact_number, clinic_descriptio
     $('#showClinicNumber').html(clinic_contact_number);
     
     $('#showClinicDescription').html(clinic_description);
+
+    $('#showClinicCategory').html(clinicCategory);
+    
 
     $('#loading').show();
 

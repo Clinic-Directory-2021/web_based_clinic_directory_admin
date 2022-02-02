@@ -1,4 +1,6 @@
-
+function redirectToAdmin(){
+  window.location.replace("https://govet.herokuapp.com/login/");
+}
 
 $('#loginForm').on('submit', function(e){
     $('#loader').show();

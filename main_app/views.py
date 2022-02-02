@@ -171,6 +171,7 @@ def acceptClinic(request):
         clinicLongitude = request.POST.get('clinicLongitude')
         totalItems = request.POST.get('totalItems')
         userId = request.POST.get('userId')
+        clinicCategory = request.POST.get('clinicCategory')
 
         doc_ref = firestoreDB.collection('users').document(userId)
         doc_ref.set({
@@ -187,6 +188,7 @@ def acceptClinic(request):
             'closing_time': closingTime,
             'clinic_description': clinicDescription,
             'total_items': totalItems,
+            'clinicCategory': clinicCategory,
         })
 
         firestoreDB.collection('queue').document(userId).delete()

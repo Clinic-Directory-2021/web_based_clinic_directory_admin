@@ -1,6 +1,6 @@
 
 
-function clinicAccept(clinic_address, clinic_contact_number, clinic_description,clinic_img_directory,clinic_img_url,clinic_name,opening_time,closing_time,email,latitude,longitude,total_items,user_id ){
+function clinicAccept(clinic_address, clinic_contact_number, clinic_description,clinic_img_directory,clinic_img_url,clinic_name,opening_time,closing_time,email,latitude,longitude,total_items,user_id,category ){
     Swal.fire({
         title: 'Do you really want to Accept this Clinic?',
         icon: 'question',
@@ -26,6 +26,7 @@ function clinicAccept(clinic_address, clinic_contact_number, clinic_description,
                     clinicLongitude: longitude,
                     totalItems: total_items,
                     userId: user_id,
+                    clinicCategory: category,
                     csrfmiddlewaretoken: $("input[name='csrfmiddlewaretoken']").val(),
                     },
                 success: function(data){
