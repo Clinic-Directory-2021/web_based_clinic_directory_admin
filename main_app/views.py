@@ -274,3 +274,5 @@ def deleteClinic(request):
         storage.delete(image_directory, clinic_id)
 
         return redirect('clinic')
+
+#comment
