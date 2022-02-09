@@ -34,7 +34,7 @@
         <td scope="row">{{forloop.counter}}</td>
         <td>{{clinic_queue.email}}</td>
         <td>{{clinic_queue.clinic_name}}</td>
-        <td>{{time}}</td>
+        <td>{{clinic_queue.request_date}}</td>
         <td>
             <form>
             {% csrf_token %}
