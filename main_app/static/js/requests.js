@@ -1,6 +1,6 @@
 
 
-function clinicAccept(clinic_address, clinic_contact_number, clinic_description,clinic_img_directory,clinic_img_url,clinic_name,opening_time,closing_time,email,latitude,longitude,total_items,user_id,category ){
+function clinicAccept(clinic_address, clinic_contact_number, clinic_description,clinic_img_directory,clinic_img_url,clinic_name,opening_time,closing_time,email,latitude,longitude,total_items,user_id,category,request_date ){
     Swal.fire({
         title: 'Do you really want to Accept this Clinic?',
         icon: 'question',
@@ -27,6 +27,7 @@ function clinicAccept(clinic_address, clinic_contact_number, clinic_description,
                     totalItems: total_items,
                     userId: user_id,
                     clinicCategory: category,
+                    requestDate: request_date,
                     csrfmiddlewaretoken: $("input[name='csrfmiddlewaretoken']").val(),
                     },
                 success: function(data){
@@ -48,7 +49,7 @@ function clinicAccept(clinic_address, clinic_contact_number, clinic_description,
       })
 }
 
-function clinicDecline(user_id,clinic_img_directory, clinic_email , clinic_name){
+function clinicDecline(user_id,clinic_img_directory, clinic_email , clinic_name, request_date){
     Swal.fire({
         title: 'Type your Reason Why This Clinic is Rejected',
         input: 'textarea'
@@ -64,6 +65,7 @@ function clinicDecline(user_id,clinic_img_directory, clinic_email , clinic_name)
                     clinicEmail: clinic_email,
                     clinicName: clinic_name,
                     reasons: result.value,
+                    requestDate: request_date,
                     csrfmiddlewaretoken: $("input[name='csrfmiddlewaretoken']").val(),
                     },
                 success: function(data){

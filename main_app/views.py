@@ -172,6 +172,7 @@ def acceptClinic(request):
         totalItems = request.POST.get('totalItems')
         userId = request.POST.get('userId')
         clinicCategory = request.POST.get('clinicCategory')
+        requestDate = request.POST.get('requestDate')
 
         doc_ref = firestoreDB.collection('users').document(userId)
         doc_ref.set({
@@ -205,7 +206,7 @@ def acceptClinic(request):
             'type': "accepted",
         })
 
-        email_message = 'Congratulations Your Request for your Clinic to be Added in Animal Clinic Directory has now been approved, You can now Sign In with Your Email and Password Provided on the Registration Page that You have Already Filled Up Before'
+        email_message = 'Hi '+clinicName+',%0aWe would like to inform you that your request to Register to the Govet Website at '+requestDate+' has been Granted. Please keep this message as proof of acknowledgement from the system and/or for future purposes.%0aBest Regards,%0aGoVet'
 
         send_mail(
             'Animal Clinic Directory',
@@ -223,6 +224,7 @@ def declineClinic(request):
         clinicImgDirectory = request.POST.get('clinicImgDirectory')
         clinicEmail = request.POST.get('clinicEmail')
         clinicName = request.POST.get('clinicName')
+        requestDate = request.POST.get('requestDate')
         # clinicPassword = request.POST.get('clinicPassword')
 
         reasons = request.POST.get('reasons')
@@ -236,7 +238,7 @@ def declineClinic(request):
 
         storage.delete(clinicImgDirectory, userId)
         
-        email_message = 'We Appreciate Your Effort But Your Request to add Your Clinic in Animal Clinic Directory Have Been Declined. Because of The Following Reasons: ' + reasons
+        email_message = 'Hi '+clinicName+',%0aWe would like to inform you that your request to Register to the Govet Website at '+requestDate+' has been Declined with the Reason of ' +reasons+ '. Please keep this message as proof of acknowledgement from the system and/or for future purposes.%0aBest Regards,%0aGoVet'
 
         send_mail(
             'Animal Clinic Directory',

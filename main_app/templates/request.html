@@ -53,8 +53,9 @@
         ,'{{clinic_queue.total_items}}'
         ,'{{clinic_queue.user_id}}'
         ,'{{clinic_queue.clinicCategory}}'
+        ,'{{clinic_queue.request_date}}'
         )">Accept</button>
-        <button type="button" class="btn btn-danger" onclick="clinicDecline('{{clinic_queue.user_id}}','{{clinic_queue.clinic_img_directory}}','{{clinic_queue.email |escapejs}}' ,'{{clinic_queue.clinic_name |escapejs}}')">Decline</button>
+        <button type="button" class="btn btn-danger" onclick="clinicDecline('{{clinic_queue.user_id}}','{{clinic_queue.clinic_img_directory}}','{{clinic_queue.email |escapejs}}' ,'{{clinic_queue.clinic_name |escapejs}}','{{clinic_queue.request_date}}')">Decline</button>
         </form>
         </td>
       </tr>
