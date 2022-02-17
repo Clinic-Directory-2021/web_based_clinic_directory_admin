@@ -206,7 +206,7 @@ def acceptClinic(request):
             'type': "accepted",
         })
 
-        email_message = 'Hi '+clinicName+',%0aWe would like to inform you that your request to Register to the Govet Website at '+requestDate+' has been Granted. Please keep this message as proof of acknowledgement from the system and/or for future purposes.%0aBest Regards,%0aGoVet'
+        email_message = 'Hi '+clinicName+',\nWe would like to inform you that your request to Register to the Govet Website at '+requestDate+' has been Granted. Please keep this message as proof of acknowledgement from the system and/or for future purposes.\nBest Regards,\nGoVet'
 
         send_mail(
             'Animal Clinic Directory',
@@ -238,7 +238,7 @@ def declineClinic(request):
 
         storage.delete(clinicImgDirectory, userId)
         
-        email_message = 'Hi '+clinicName+',%0aWe would like to inform you that your request to Register to the Govet Website at '+requestDate+' has been Declined with the Reason of ' +reasons+ '. Please keep this message as proof of acknowledgement from the system and/or for future purposes.%0aBest Regards,%0aGoVet'
+        email_message = 'Hi '+clinicName+',\nWe would like to inform you that your request to Register to the Govet Website at '+requestDate+' has been Declined with the Reason of ' +reasons+ '. Please keep this message as proof of acknowledgement from the system and/or for future purposes.\nBest Regards,\nGoVet'
 
         send_mail(
             'Animal Clinic Directory',
